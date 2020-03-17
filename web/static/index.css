@@ -1,0 +1,82 @@
+section{
+    background: url('img/bg.png') no-repeat;
+    background-size: cover;
+    height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.consult-area{
+    padding: 10px 15px;
+}
+.consult-header{
+    display: block;
+    color: #fff;
+    font-size: 48px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+input.consult{
+    border: none;
+    background: none;
+    width: 90%;
+    margin: 0;
+    padding: 0px 5px;
+    height: 30px;
+    border-bottom: 5px solid #ff3333;
+    color: #fff;
+    font-size: 21px;
+    outline: none;
+}
+.btn{
+    background: none;
+    border: none;
+    width: 9%;
+    height: 30px;
+    margin-left: -10px;
+    background: #ff3333;
+    cursor: pointer;
+}
+
+@keyframes bounceRight {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+    }
+    40% {
+        -ms-transform: translateX(30px);
+        transform: translateX(30px);
+    }
+    60% {
+        -ms-transform: translateX(15px);
+        transform: translateX(15px);
+    }
+}
+
+.btn:hover i{
+    animation: bounceRight 2s infinite;
+}
+
+
+@media (max-width: 952px){
+    .consult-area{
+        margin-top: -30px;
+    }
+    .consult-header{
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 632px){
+    input.consult{
+        width: 80%;
+    }
+    .btn{
+        width: 19%;
+    }
+}

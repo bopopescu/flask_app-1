@@ -1,0 +1,74 @@
+section{
+    background: url('img/deletebg.png') no-repeat;
+    background-size: cover;
+    height: calc(100vh - 80px);
+    font-family: 'Titillium Web', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+.table-area{
+    overflow: auto;
+    height: 95%;
+    width: 50%;
+}
+.table-area table{
+    border-collapse: collapse;
+    width: 90%;
+}
+.table-area th, td {
+    text-align: center;
+}
+.table-area th{
+    color: #ff3333;
+    font-size: 40px;
+    font-weight: bold;
+}
+.table-area td{
+    color: #fff;
+    font-size: 21px;
+    padding: 10px 0;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #555; 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #ff3333; 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #d12a2a; 
+}
+button{
+    background: none;
+    border: none;
+    outline: none;
+    width: 90%;
+    margin-top: 15px;
+    padding: 10px 5px;
+    background: #ff3333;
+    color: #fff;
+    font-size: 21px;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover{
+    background: #d12a2a;
+}
+
+@media (max-width: 952px){
+    .table-area{
+        width: 100%;
+    }
+    .table-area th{
+        font-size: 32px;
+    }
+    .table-area td{
+        font-size: 18px;
+    }
+}

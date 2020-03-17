@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+   <link rel="icon" href="static/img/favicon.ico" type="image/x-icon">
+   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="static/index.css">
+   <link rel="stylesheet" href="static/navbar.css">
+   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+   <title>Jogadores de CSGO 101</title>
+</head>
+<body>
+   <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+          <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">ProDB</label>
+      <ul>
+          <li><a href="/" class="active">Home</a></li>
+          <li><a href="./fCreate">Incluir</a></li>
+          <li><a href="./fRead">Consultar</a></li>
+          <li><a href="./sUpdate">Alterar</a></li>
+          <li><a href="./sExcluir">Excluir</a></li>
+      </ul>
+  </nav>
+  <section>
+         <form action="/index-read" method="POST">
+            <div class="consult-area">
+               <label class="consult-header" for='name'>Encontre agora mesmo o jogador que procura!</label>
+               <input type="text" id="name" placeholder="Digite o nome do jogador..." name="name" class="consult" required>
+               <button class="btn" type="submit"><i class="fa fa-arrow-right"></i></button>
+            </div>
+         </form>
+  </section>
+</body>
+</html>

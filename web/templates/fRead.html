@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+   <link rel="icon" href="static/img/favicon.ico" type="image/x-icon">
+   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="static/read.css">
+   <link rel="stylesheet" href="static/navbar.css">
+   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+   <script type="text/javascript" src="static/ajax.js"></script>
+   <title>ProDB - Read</title>
+</head>
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">ProDB</label>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="./fCreate">Incluir</a></li>
+            <li><a href="./fRead" class="active">Consultar</a></li>
+            <li><a href="./sUpdate">Alterar</a></li>
+            <li><a href="./sExcluir">Excluir</a></li>
+        </ul>
+    </nav>
+    <section>
+        <div class="form-area">
+            <div class="input-area">
+                <label for="name">Nome</label>
+                <input type="text" placeholder="(Ex: fiB0b)" id="name" name="name" size="50" maxlength="50" required />
+            </div>
+            <div class="input-area">
+                <label for="team">Equipe</label>
+                {{ teams | safe }}
+            </div>
+            <div class="input-area">
+                <label for="country">País de origem</label>
+                {{ countries | safe }}
+            </div>
+            <div class="button-area">
+                <input type="submit" class = "button" value="Consultar" onclick="exec()"/>
+            </div>
+        </div>
+        <div class="bar-area">
+            <div class="bar1"></div>
+            <i class="far fa-circle"></i>
+            <div class="bar2"></div>
+        </div>
+        <div class="result" id="result">
+            <p>Nenhuma consulta realizada.</p>
+        </div>
+    </section>
+</body>
+</html>
+
+<script>
+    function showResult(x){
+        var formArea = document.getElementsByClassName("form-area")[0];
+        var result = document.getElementById("result");
+        var currentFormStyle = formArea.style.cssText;
+        var currentResultStyle = result.style.cssText;
+        if (x.matches){
+            formArea.style.cssText = currentFormStyle + "display: none;";
+            result.style.cssText = currentFormStyle + "display: block;";
+        } 
+    }
+    function exec(){
+      var name = document.getElementById("name").value;
+      var team = document.getElementById("team").value;
+      var country = document.getElementById("country").value;
+      var x = window.matchMedia("(max-width: 890px)");
+      document.getElementById("result").style.cssText = "justify-content: flex-start; align-items: flex-start;";
+      showResult(x);
+      chamarURL("/read", "result", "name="+ name+"&team="+team+"&country="+country);
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+      var name = '{{ name_from_index }}';
+      if(name){
+        document.getElementById("name").setAttribute("value", name);
+        exec();
+      }
+    });
+</script>

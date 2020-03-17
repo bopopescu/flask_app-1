@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+   <link rel="icon" href="static/img/favicon.ico" type="image/x-icon">
+   <link href="https://fonts.googleapis.com/css?family=Montserrat|Titillium+Web&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="static/navbar.css">
+   <link rel="stylesheet" href="static/result.css">
+   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+   <script type="text/javascript" src="static/ajax.js"></script>
+   <title>ProDB - Update</title>
+</head>
+<body>
+   <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+          <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">ProDB</label>
+      <ul>
+          <li><a href="/" id="home">Home</a></li>
+          <li><a href="./fCreate" id="create">Incluir</a></li>
+          <li><a href="./fRead" id="read" >Consultar</a></li>
+          <li><a href="./sUpdate" id="update">Alterar</a></li>
+          <li><a href="./sExcluir" id="delete">Excluir</a></li>
+      </ul>
+  </nav>
+  <section>
+      {{ msg | safe}}
+      <div id= "result"></div>
+  </section>
+</body>
+</html>
+
+<script>
+   function exec(){
+      var op = document.getElementById("operation").getAttribute("value");
+      chamarURL("/result", "result", "op="+ op);
+   }
+   document.addEventListener("DOMContentLoaded", function() {
+      var op_from = '{{ op_from | safe }}';
+      switch (op_from){
+         case 'create':
+            document.getElementById('create').setAttribute('class', 'active')
+            break;
+         case 'update':
+            document.getElementById('update').setAttribute('class', 'active')
+            break;
+         case 'delete':
+            document.getElementById('delete').setAttribute('class', 'active')
+            break;
+      }
+      exec();
+   });
+</script>

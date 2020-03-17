@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <link rel="icon" href="static/img/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Titillium+Web&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/navbar.css">
+    <link rel="stylesheet" href="static/update.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" src="static/ajax.js"></script>
+    <title>ProDB - Update</title>
+</head>
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">ProDB</label>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="./fCreate">Incluir</a></li>
+            <li><a href="./fRead">Consultar</a></li>
+            <li><a href="./sUpdate" class="active">Alterar</a></li>
+            <li><a href="./sExcluir">Excluir</a></li>
+        </ul>
+    </nav>
+    <section>
+        <div id="result">
+            <div class="input-area">
+                <label for="name">Nome</label>
+                <input type="text" placeholder="(Ex: fiB0b)" id="name" name="name" size="50" maxlength="50" required />
+            </div>
+            <input type="submit" class = "button" value="Alterar" onclick="exec()"/>
+        </div>
+    </section>
+</body>
+</html>
+
+<script>
+    function exec(){
+        var name = document.getElementById("name").value;
+        chamarURL("/fUpdate", "result", "name="+ name);
+    }
+</script>

@@ -1,0 +1,63 @@
+section{
+    background: url('img/createbg.png') no-repeat;
+    background-size: cover;
+    height: calc(100vh - 80px);
+    font-family: 'Titillium Web', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input-area{
+    width: 520px;
+}
+.input-area label{
+    display: block;
+    margin: 10px 0 5px 0;
+    color: #fff;
+    font-size: 32px;
+}
+.input-area input{
+    border: none;
+    outline: none;
+    background: none;
+    overflow: none;
+    width: 100%;
+    padding: 5px 4px;
+    border-bottom: 4px solid #ff3333;
+    color: #fff;
+    font-size: 21px;
+}
+.input-area input:focus{
+    background: rgba(255, 255, 255, 0.12);
+}
+.button{
+    background: none;
+    border: none;
+    outline: none;
+    width: 30%;
+    margin-top: 15px;
+    padding: 10px 5px;
+    background: #ff3333;
+    color: #fff;
+    font-size: 21px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.button:hover{
+    background: #d12a2a;
+    width: 100%;
+    transition: 1s ease-in-out;
+}
+@media (max-width: 620px){
+    .input-area{
+        width: 420px;
+    }
+    .button{
+        width: 100%;
+    }
+}
+@media (max-width: 440px){
+    .input-area{
+        width: 320px;
+    }
+}

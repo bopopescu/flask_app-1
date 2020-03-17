@@ -1,0 +1,52 @@
+section{
+    background: url('img/resultbg.png') no-repeat;
+    background-size: cover;
+    height: calc(100vh - 80px);
+    font-family: 'Titillium Web', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+.title{
+    border-bottom: 4px solid #ff3333;
+    color: #fff;
+    font-size: 40px;
+}
+.result-msg{
+    margin: 25px 0px;
+    text-align: center;
+    color: #33ff33;
+    font-size: 26px;
+}
+.button-area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.button{
+    text-decoration: none;
+    border: 2px solid #ff3333;
+    text-align: center;
+    padding: 13px 8px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.button:hover{
+    color: #ff3333;
+    transition: 1s;
+}
+
+@media (max-width: 890px){
+    .title{
+        font-size: 32px;
+    }
+    .result-msg{
+        font-size: 21px;
+    }
+    .button{
+        font-size: 16px;
+    }
+}
