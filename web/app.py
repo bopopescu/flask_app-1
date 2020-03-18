@@ -4,7 +4,15 @@ import sys
 sys.path.append('../')
 from database import sql
 from flask import Flask, render_template, request
+from json import load
 
+
+user, password, schema = ('', '', '')
+with open('./../config.json') as json_file:
+    data = load(json_file)
+    user = data['user']
+    password = data['password']
+    schema = data['schema']
 
 app = Flask(__name__)
 def get_consult_values():
@@ -76,7 +84,7 @@ def consultar():
     name = "a" if name == "undefined" else name
 
     # Recuperando jogadorss que satisfazem aos parâmetros de filtragem
-    mysql = sql.SQL("root", "12qwaszx", "db_python")
+    mysql = sql.SQL(user, password, schema)
     country_list = [name]
 
     command = "SELECT * FROM tb_jogador WHERE name_jogador LIKE CONCAT('%', %s, '%')"
@@ -128,11 +136,11 @@ def parUpdate():
 
 @app.route('/fUpdate', methods=['POST'])
 def formUpdate():
-    # Pegando os dados de parâmetro vindos do formulário parConsultar()
+    # Getting name from form
     name = request.form['name']
 
-    # Recuperando modelos que satisfazem aos parâmetros de filtragem
-    mysql = sql.SQL("root", "12qwaszx", "db_python")
+    # Requesting data that corresponds to name from form.
+    mysql = sql.SQL(user, password, schema)
     command = "SELECT * FROM tb_jogador WHERE name_jogador=%s;"
 
     cs = mysql.consultar(command, [name])
@@ -177,7 +185,7 @@ def alterar():
    country = request.form['country']
 
    # Alterando dados no SGBD
-   mysql = sql.SQL("root", "12qwaszx", "db_python")
+   mysql = sql.SQL(user, password, schema)
    command = "UPDATE tb_jogador SET name_jogador=%s, team_jogador=%s, cntr_jogador = %s WHERE idt_jogador=%s;"
 
    if mysql.executar(command, [name, team, country, idt]):
@@ -215,15 +223,16 @@ def getResult():
         ajx = "<h1 class = 'title'>Resultado da exclusão de jogador</h1>" + \
         "<h2 class = 'result-msg'>Jogador excluído com sucesso</h2>" + \
         "<div class='button-area'>" + \
-        "<a class = 'button' href='/sExcluir'> Excluir outro jogador </a>" + \
+        "<a class = 'button' href='/sDelete'> Excluir outro jogador </a>" + \
         "</div>"   
 
     return render_template('ajax.html', AJAX=ajx)
 
-@app.route('/sExcluir')
-def parExcluir():
-   # Recuperando todos os modelos da base de dados
-   mysql = sql.SQL("root", "12qwaszx", "db_python")
+@app.route('/sDelete')
+def parDelete():
+
+   # Getting all lines from database for delete
+   mysql = sql.SQL(user, password, schema)
    comando = "SELECT idt_jogador, name_jogador, team_jogador, cntr_jogador FROM tb_jogador ORDER BY team_jogador;"
 
    cs = mysql.consultar(comando, ())
@@ -232,11 +241,11 @@ def parExcluir():
        players += "<TR>"
        players += "<TD CLASS = 'item-excluir'>" + nome + " (" + time + ")" + "</TD>"
        players += "<TD CLASS = 'item-excluir'>" + pais + "</TD>"
-       players += "<TD><BUTTON CLASS = 'button-excluir' ONCLICK=\"jsExcluir('" + nome + " (" + time + ")" + "', " + str(idt) + ")\">Excluir" + "</BUTTON></TD>"
+       players += "<TD><BUTTON CLASS = 'button-excluir' ONCLICK=\"jsDelete('" + nome + " (" + time + ")" + "', " + str(idt) + ")\">Excluir" + "</BUTTON></TD>"
        players += "</TR>"
    cs.close()
 
-   return render_template('sExcluir.html', players = players )
+   return render_template('sDelete.html', players = players )
 
 
 
@@ -246,7 +255,7 @@ def excluir():
     idt = int(request.form['idt'])
 
     # Alterando dados no SGBD
-    mysql = sql.SQL("root", "12qwaszx", "db_python")
+    mysql = sql.SQL(user, password, schema)
     comando = "DELETE FROM tb_jogador WHERE idt_jogador=%s;"
 
     if mysql.executar(comando, [idt]):
