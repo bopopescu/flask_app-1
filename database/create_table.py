@@ -1,6 +1,14 @@
 from sql import SQL
+from json import load
 
-mysql = SQL("root", "12qwaszx", "db_python")
+user, password, schema = ('', '', '')
+with open('./../config.json') as json_file:
+    data = load(json_file)
+    user = data['user']
+    password = data['password']
+    schema = data['schema']
+
+mysql = SQL(user, password, schema)
 
 comando = "DROP TABLE IF EXISTS tb_jogador;"
 
